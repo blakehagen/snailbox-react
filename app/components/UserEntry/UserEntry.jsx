@@ -15,11 +15,10 @@ export default class UserEntry extends React.Component {
           <div className={styles.inputContainer}>
             <InputField type="text" placeholder="Email"/>
             <InputField style={{marginTop: '8px'}} type="password" placeholder="Password"/>
-            <ActionButton buttonAction="Login" />
+            <ActionButton buttonAction="Login"/>
           </div>
           <div className={styles.actionToggle}>
-            <p>Login/Sign Up</p>
-
+            <p>Sign Up</p>
           </div>
         </div>
       </div>
