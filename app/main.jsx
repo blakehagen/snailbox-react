@@ -6,7 +6,7 @@ import App from 'components/App';
 import styles from './main.scss';
 
 ReactDOM.render(
-  <div className={styles.body}>
+  <div className={styles.appBody}>
     <Provider>
       <Router history={hashHistory}>
         <Route path='/' component={App}/>
