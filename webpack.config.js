@@ -16,7 +16,7 @@ const ExtractTextPluginConfig = new ExtractTextPlugin('styles.css');
 
 module.exports = {
   entry: [
-    './app/Main.jsx', 'webpack-hot-middleware/client?reload=true'
+    './app/main.jsx', 'webpack-hot-middleware/client?reload=true'
   ],
   output: {
     path: __dirname + '/dist',
