@@ -1,33 +1,33 @@
 input {
-  height: 42px;
+  height: 38px;
   border-radius: 4px;
   background: #FFF;
   margin-bottom: 12px;
   padding: 0 12px;
   width: 100%;
   font-weight: 100;
-  font-size: 17px;
-  line-height: 42px;
+  font-size: 15px;
+  line-height: 38px;
   border: none;
   outline: 0;
 }
 
 ::-webkit-input-placeholder {
-  color: #707C80 !important;
+  color: #BBBBBB !important;
   font-weight: 100;
 }
 
 :-moz-placeholder {
-  color: #707C80 !important;
+  color: #BBBBBB !important;
   font-weight: 100;
 }
 
 ::-moz-placeholder {
-  color: #707C80 !important;
+  color: #BBBBBB !important;
   font-weight: 100;
 }
 
 :-ms-input-placeholder {
-  color: #707C80 !important;
+  color: #BBBBBB !important;
   font-weight: 100;
 }
