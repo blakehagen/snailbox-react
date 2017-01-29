@@ -1,42 +1,32 @@
 import React from 'react';
-import InputField from './InputField';
-import ActionButton from './ActionButton';
+import Login from './Login';
+import Register from './Register';
+import ActionButton from 'components/ActionButton';
+import autoBind from 'react-autobind';
 import styles from './userEntry.scss';
 
 export default class UserEntry extends React.Component {
   constructor(props) {
     super(props);
-    this.state       = {type: 'login'};
+    this.state       = {
+      type: 'login'
+    };
     this.toggleEntry = this.toggleEntry.bind(this);
-
   }
 
   render() {
-    let entryForm;
-    let switchFormText;
 
+    let form;
+    let ActiveForm;
+    let switchForm;
     if (this.state.type === 'login') {
-      entryForm          = (
-        <div className={styles.inputContainer}>
-          <InputField type="text" placeholder="Email"/>
-          <InputField style={{marginTop: '8px'}} type="password" placeholder="Password"/>
-          <ActionButton buttonAction="Login"/>
-        </div>
-      );
-      switchFormText = 'Register';
+      form       = <Login />;
+      ActiveForm = 'Login';
+      switchForm = 'Register';
     } else {
-      entryForm          = (
-        <div className={styles.inputContainer}>
-          <InputField type="text" placeholder="First Name"/>
-          <InputField style={{marginTop: '8px'}} type="text" placeholder="Last Name"/>
-          <InputField style={{marginTop: '8px'}} type="text" placeholder="Email"/>
-          <InputField style={{marginTop: '8px'}} type="password" placeholder="Password"/>
-          <InputField style={{marginTop: '8px'}} type="password" placeholder="Confirm Password"/>
-          <ActionButton buttonAction="Register"/>
-        </div>
-      );
-      switchFormText = 'Login';
-
+      form       = <Register/>;
+      ActiveForm = 'Register';
+      switchForm = 'Login';
     }
 
     return (
@@ -46,9 +36,14 @@ export default class UserEntry extends React.Component {
             <div className={styles.snailIcon}/>
             <h1 className={styles.title}>SnailBox</h1>
           </div>
-          {entryForm}
+
+          <div className={styles.inputContainer}>
+            {form}
+            <ActionButton buttonAction={ActiveForm}/>
+          </div>
+
           <div className={styles.actionToggle} onClick={this.toggleEntry}>
-            <p>{switchFormText}</p>
+            <p>{switchForm}</p>
           </div>
         </div>
       </div>
@@ -57,13 +52,9 @@ export default class UserEntry extends React.Component {
 
   toggleEntry() {
     if (this.state.type === 'login') {
-      this.setState({
-        type: 'register'
-      });
+      this.setState({type: 'register'});
     } else {
-      this.setState({
-        type: 'login'
-      });
+      this.setState({type: 'login'});
     }
   }
 }

@@ -1,5 +1,6 @@
 .mainContainer {
   height: 100vh;
+  min-height: 410px;
   width: 100%;
   background: url('./images/snailboxMainBackground.jpg') no-repeat bottom;
   background-size: cover;
@@ -9,7 +10,7 @@
   .formContainer {
     background: rgba(0, 0, 0, .8);
     padding: 10px 20px 0;
-    width: 330px;
+    max-width: 330px;
     border-radius: 10px;
     .formTitle {
       width: 100%;
@@ -18,6 +19,7 @@
       align-items: center;
       padding-top: 4px;
       padding-bottom: 6px;
+      cursor: default;
       .snailIcon {
         height: 34px;
         width: 34px;
@@ -50,5 +52,11 @@
         cursor: pointer;
       }
     }
+  }
+}
+
+@media (max-width: 390px) {
+  .formContainer {
+    width: 90%;
   }
 }
