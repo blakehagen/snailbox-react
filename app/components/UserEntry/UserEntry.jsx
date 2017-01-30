@@ -7,10 +7,10 @@ import styles from './userEntry.scss';
 export default class UserEntry extends React.Component {
   constructor(props) {
     super(props);
-    this.state       = {
+    autoBind(this);
+    this.state = {
       type: 'login'
     };
-    this.toggleEntry = this.toggleEntry.bind(this);
   }
 
   render() {

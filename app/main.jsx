@@ -12,7 +12,6 @@ ReactDOM.render(
       <Router history={hashHistory}>
         <Route path='/' component={App}/>
         <Route path='/testRoute' component={TestRoute}/>
-
       </Router>
     </Provider>
   </div>, document.getElementById('app')

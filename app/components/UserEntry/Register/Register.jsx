@@ -6,6 +6,7 @@ import styles from './register.scss';
 export default class Register extends React.Component {
   constructor(props) {
     super(props);
+    autoBind(this);
     this.state = {
       firstName: '',
       lastName: '',
@@ -13,13 +14,6 @@ export default class Register extends React.Component {
       password: '',
       confirmPassword: ''
     };
-
-    this.setFirstName       = this.setFirstName.bind(this);
-    this.setLastName        = this.setLastName.bind(this);
-    this.setEmail           = this.setEmail.bind(this);
-    this.setPassword        = this.setPassword.bind(this);
-    this.setConfirmPassword = this.setConfirmPassword.bind(this);
-    this.registerGo         = this.registerGo.bind(this);
   }
 
   render() {

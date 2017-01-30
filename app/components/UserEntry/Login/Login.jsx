@@ -1,19 +1,17 @@
 import React from 'react';
 import autoBind from 'react-autobind';
 import ActionButton from '../ActionButton';
+import userService from '../../../services/userService';
 import styles from './login.scss';
 
 export default class Login extends React.Component {
   constructor(props) {
     super(props);
+    autoBind(this);
     this.state = {
       email: '',
       password: ''
     };
-
-    this.setEmail    = this.setEmail.bind(this);
-    this.setPassword = this.setPassword.bind(this);
-    this.loginGo     = this.loginGo.bind(this);
   }
 
   render() {
@@ -42,6 +40,10 @@ export default class Login extends React.Component {
 
     this.setState({email: '', password: ''});
     console.log('loginPackage --> ', loginPackage);
-    // window.location.href = '#/testRoute';
+    userService.login(loginPackage)
+      .then(response => {
+        console.log('response on login component', response);
+        window.location.href = '#/testRoute';
+      });
   }
 }
