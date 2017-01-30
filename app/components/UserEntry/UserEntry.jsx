@@ -1,7 +1,6 @@
 import React from 'react';
 import Login from './Login';
 import Register from './Register';
-import ActionButton from 'components/ActionButton';
 import autoBind from 'react-autobind';
 import styles from './userEntry.scss';
 
@@ -21,11 +20,9 @@ export default class UserEntry extends React.Component {
     let switchForm;
     if (this.state.type === 'login') {
       form       = <Login />;
-      ActiveForm = 'Login';
       switchForm = 'Register';
     } else {
       form       = <Register/>;
-      ActiveForm = 'Register';
       switchForm = 'Login';
     }
 
@@ -39,7 +36,6 @@ export default class UserEntry extends React.Component {
 
           <div className={styles.inputContainer}>
             {form}
-            <ActionButton buttonAction={ActiveForm}/>
           </div>
 
           <div className={styles.actionToggle} onClick={this.toggleEntry}>
