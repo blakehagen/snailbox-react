@@ -2,6 +2,7 @@ import React from 'react';
 import autoBind from 'react-autobind';
 import ActionButton from '../ActionButton';
 import userService from '../../../services/userService';
+import utils from '../../../utils/helpers';
 import styles from './login.scss';
 
 export default class Login extends React.Component {
@@ -43,7 +44,7 @@ export default class Login extends React.Component {
     userService.login(loginPackage)
       .then(response => {
         console.log('response on login component', response);
-        window.location.href = '#/testRoute';
+        utils.handleRouteChange('#/testRoute');
       });
   }
 }

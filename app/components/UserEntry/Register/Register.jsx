@@ -1,6 +1,7 @@
 import React from 'react';
 import autoBind from 'react-autobind';
 import ActionButton from '../ActionButton';
+import utils from '../../../utils/helpers';
 import styles from './register.scss';
 
 export default class Register extends React.Component {
@@ -68,7 +69,8 @@ export default class Register extends React.Component {
     });
 
     console.log('registerPackage --> ', registerPackage);
-    window.location.href = '#/testRoute';
+    utils.handleRouteChange('#/testRoute');
+
   }
 
 
