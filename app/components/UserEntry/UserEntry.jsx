@@ -16,7 +16,6 @@ export default class UserEntry extends React.Component {
   render() {
 
     let form;
-    let ActiveForm;
     let switchForm;
     if (this.state.type === 'login') {
       form       = <Login />;

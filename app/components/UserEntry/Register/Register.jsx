@@ -1,6 +1,7 @@
 import React from 'react';
 import autoBind from 'react-autobind';
 import ActionButton from '../ActionButton';
+import userService from '../../../services/userService';
 import utils from '../../../utils/helpers';
 import styles from './register.scss';
 
@@ -52,7 +53,7 @@ export default class Register extends React.Component {
   }
 
   registerGo() {
-    let registerPackage = {
+    let registerData = {
       firstName: this.state.firstName,
       lastName: this.state.lastName,
       email: this.state.email,
@@ -68,9 +69,11 @@ export default class Register extends React.Component {
       confirmPassword: ''
     });
 
-    console.log('registerPackage --> ', registerPackage);
-    utils.handleRouteChange('#/testRoute');
-
+    userService.register(registerData)
+      .then(response => {
+        console.log('response on register component', response);
+        utils.handleRouteChange('#/testRoute');
+      });
   }
 
 

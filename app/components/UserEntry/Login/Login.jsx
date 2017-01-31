@@ -34,14 +34,13 @@ export default class Login extends React.Component {
   }
 
   loginGo() {
-    let loginPackage = {
+    let loginData = {
       email: this.state.email,
       password: this.state.password
     };
 
     this.setState({email: '', password: ''});
-    console.log('loginPackage --> ', loginPackage);
-    userService.login(loginPackage)
+    userService.login(loginData)
       .then(response => {
         console.log('response on login component', response);
         utils.handleRouteChange('#/testRoute');
