@@ -3,12 +3,14 @@ const BASE_URL = 'https://snailbox-api.herokuapp.com/api/v1/';
 
 export default {
   login(loginData) {
-    console.log('login data on service ---> ', loginData);
     return axios.post(`${BASE_URL}login`, {
       email: loginData.email,
       password: loginData.password
     })
       .then(response => {
+        console.log('response test --> ', response);
+        localStorage.setItem('token', response.data.token);
+        localStorage.setItem('user', JSON.stringify(response.data.user));
         return response.data;
       })
       .catch(error => {

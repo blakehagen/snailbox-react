@@ -47,7 +47,7 @@ export default class Login extends React.Component {
     this.setState({email: '', password: ''});
     userService.login(loginData)
       .then(response => {
-        console.log('response on login component', response);
+        console.log('response on login component', response.user);
         this.userStore.user = response.user;
         utils.handleRouteChange('#/testRoute');
       });
