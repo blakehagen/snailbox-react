@@ -8,9 +8,7 @@ export default {
       password: loginData.password
     })
       .then(response => {
-        console.log('response test --> ', response);
         localStorage.setItem('token', response.data.token);
-        localStorage.setItem('user', JSON.stringify(response.data.user));
         return response.data;
       })
       .catch(error => {
@@ -29,6 +27,22 @@ export default {
     })
       .then(response => {
         return response.data;
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  },
+
+  getUser(userId, token) {
+    let options = axios.create({
+      headers: {'Bearer': token}
+    });
+
+    console.log('userId on service ---> ', userId);
+    return axios.get(`${BASE_URL}user/${userId}`, options)
+      .then(response => {
+        console.log('getUser on service response', response);
+        return response;
       })
       .catch(error => {
         console.log(error);

@@ -1,8 +1,8 @@
+import _ from 'lodash';
 import React from 'react';
 import {observer, inject} from 'mobx-react';
 import autoBind from 'react-autobind';
 import ActionButton from '../ActionButton';
-import userService from '../../../services/userService';
 import utils from '../../../utils/helpers';
 import styles from './login.scss';
 
@@ -45,11 +45,14 @@ export default class Login extends React.Component {
     };
 
     this.setState({email: '', password: ''});
-    userService.login(loginData)
+
+    this.userStore.loginUser(loginData)
       .then(response => {
-        console.log('response on login component', response.user);
-        this.userStore.user = response.user;
-        utils.handleRouteChange('#/testRoute');
-      });
+        if (_.isError(response)) {
+          console.log('THERE WAS AN ERROR ON LOG IN');
+        } else {
+          utils.handleRouteChange(`#/testRoute/${response._id}`)
+        }
+      })
   }
 }
