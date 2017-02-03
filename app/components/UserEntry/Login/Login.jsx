@@ -4,6 +4,7 @@ import {observer, inject} from 'mobx-react';
 import autoBind from 'react-autobind';
 import ActionButton from '../ActionButton';
 import utils from '../../../utils/helpers';
+import userService from '../../../services/userService';
 import styles from './login.scss';
 
 @inject('userStore')
@@ -46,13 +47,18 @@ export default class Login extends React.Component {
 
     this.setState({email: '', password: ''});
 
-    this.userStore.loginUser(loginData)
+    return userService.login(loginData)
       .then(response => {
         if (_.isError(response)) {
-          console.log('THERE WAS AN ERROR ON LOG IN');
+          console.log('error');
+          return false;
         } else {
-          utils.handleRouteChange(`#/testRoute/${response._id}`)
+          this.userStore.user = response.user;
+          utils.changeRoute(`#/testRoute/${this.userStore.user._id}`)
         }
       })
+
   }
+
+
 }

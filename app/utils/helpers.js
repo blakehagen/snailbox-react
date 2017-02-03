@@ -1,5 +1,5 @@
 module.exports = {
-  handleRouteChange(url){
+  changeRoute(url){
     window.location.href = url;
   }
 };

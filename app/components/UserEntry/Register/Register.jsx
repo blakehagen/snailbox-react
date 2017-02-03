@@ -72,7 +72,7 @@ export default class Register extends React.Component {
     userService.register(registerData)
       .then(response => {
         console.log('response on register component', response);
-        utils.handleRouteChange('#/testRoute');
+        utils.changeRoute('#/testRoute');
       });
   }
 

@@ -9,15 +9,15 @@ export default {
     })
       .then(response => {
         localStorage.setItem('token', response.data.token);
+        sessionStorage.setItem('user', JSON.stringify(response.data.user));
         return response.data;
       })
       .catch(error => {
-        console.log(error);
+        return error;
       });
   },
 
   register(registerData) {
-    console.log('registerData data on service ---> ', registerData);
     return axios.post(`${BASE_URL}signup`, {
       firstName: registerData.firstName,
       lastName: registerData.lastName,
@@ -27,22 +27,6 @@ export default {
     })
       .then(response => {
         return response.data;
-      })
-      .catch(error => {
-        console.log(error);
-      });
-  },
-
-  getUser(userId, token) {
-    let options = axios.create({
-      headers: {'Bearer': token}
-    });
-
-    console.log('userId on service ---> ', userId);
-    return axios.get(`${BASE_URL}user/${userId}`, options)
-      .then(response => {
-        console.log('getUser on service response', response);
-        return response;
       })
       .catch(error => {
         console.log(error);
