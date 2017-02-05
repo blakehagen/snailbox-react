@@ -19,7 +19,7 @@ export default class UserEntry extends React.Component {
     let switchForm;
     if (this.state.type === 'login') {
       form       = <Login />;
-      switchForm = 'Register';
+      switchForm = 'Create Account';
     } else {
       form       = <Register/>;
       switchForm = 'Login';

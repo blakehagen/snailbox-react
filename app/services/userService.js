@@ -8,8 +8,10 @@ export default {
       password: loginData.password
     })
       .then(response => {
-        localStorage.setItem('token', response.data.token);
-        sessionStorage.setItem('user', JSON.stringify(response.data.user));
+        if (response.status === 200) {
+          sessionStorage.setItem('token', response.data.token);
+          sessionStorage.setItem('userId', response.data.user._id);
+        }
         return response.data;
       })
       .catch(error => {
@@ -31,6 +33,21 @@ export default {
       .catch(error => {
         console.log(error);
       });
+  },
+
+  getUser(userId){
+    return axios.get(`${BASE_URL}user/${userId}`, {
+      headers: {
+        Authorization: `Bearer ${sessionStorage.getItem('token')}`
+      }
+    })
+      .then(response => {
+        return response;
+      })
+      .catch(err => {
+        return err;
+      })
   }
+
 
 };
