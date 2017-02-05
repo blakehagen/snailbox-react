@@ -57,8 +57,6 @@ export default class Login extends React.Component {
           utils.changeRoute(`#/testRoute/${this.userStore.user._id}`)
         }
       })
-
   }
-
 
 }

@@ -7,14 +7,13 @@ import UserStore from './stores/UserStore';
 import App from 'components/App';
 import TestRoute from 'components/TestRoute';
 import styles from './main.scss';
-import utils from './utils/helpers';
 
 const userStore = new UserStore();
 
 ReactDOM.render(
-  <div className={styles.appBody}>
+<div className={styles.appBody}>
     <Provider userStore={userStore}>
-      <Router history={hashHistory} onUpdate={verifyUserId}>
+      <Router history={hashHistory}>
         <Route path='/' component={App}/>
         <Route path='/testRoute/:userId' component={TestRoute}/>
         <Route path="*" component={App}>
@@ -24,9 +23,3 @@ ReactDOM.render(
     </Provider>
   </div>, document.getElementById('app')
 );
-
-function verifyUserId() {
-  if (_.includes(window.location.hash, 'testRoute') && !_.includes(window.location.hash, userStore.userId)) {
-    utils.changeRoute('/');
-  }
-}

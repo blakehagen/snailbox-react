@@ -16,13 +16,13 @@ export default class UserStore {
   @action
   getUser() {
     this.userId = sessionStorage.getItem('userId');
-
     userService.getUser(this.userId)
       .then(response => {
         if (_.isError(response) || response.status !== 200) {
           utils.changeRoute('/');
+        } else {
+          this.user = response.data;
         }
-        this.user = response.data;
       })
       .catch(err => {
         console.log('err -->', err);
