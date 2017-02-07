@@ -28,10 +28,15 @@ export default {
       confirmPassword: registerData.confirmPassword
     })
       .then(response => {
+        console.log('response', response);
+        if (response.status === 200) {
+          sessionStorage.setItem('token', response.data.token);
+          sessionStorage.setItem('userId', response.data.user._id);
+        }
         return response.data;
       })
       .catch(error => {
-        console.log(error);
+        return error;
       });
   },
 

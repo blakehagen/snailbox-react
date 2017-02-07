@@ -38,10 +38,6 @@ export default class UserEntry extends React.Component {
           <div className={styles.inputContainer}>
             {form}
           </div>
-
-          {/*<div className={styles.actionToggle} onClick={this.toggleEntry}>*/}
-            {/*<p>{switchForm}</p>*/}
-          {/*</div>*/}
         </div>
       </div>
     )

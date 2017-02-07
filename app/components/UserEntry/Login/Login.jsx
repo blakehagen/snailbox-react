@@ -62,6 +62,7 @@ export default class Login extends React.Component {
       .then(response => {
         if (_.isError(response)) {
           console.log('error');
+          this.setState({loading: false});
           return false;
         } else {
           this.userStore.user = response.user;

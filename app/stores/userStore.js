@@ -6,16 +6,11 @@ import utils from '../utils/helpers';
 
 export default class UserStore {
   @observable user;
-  @observable loading = false;
 
   constructor() {
     autoBind(this);
     this.user   = null;
     this.userId = null;
-    // this.loading = false;
-    reaction(() => this.loading, () => {
-      console.log('this.loading', this.loading);
-    });
   }
 
   @action
