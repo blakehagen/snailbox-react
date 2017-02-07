@@ -1,6 +1,8 @@
 import React from 'react';
+import {observer, inject} from 'mobx-react';
 import Login from './Login';
 import Register from './Register';
+import Spinner from '../Common/Spinner';
 import autoBind from 'react-autobind';
 import styles from './userEntry.scss';
 
@@ -18,10 +20,10 @@ export default class UserEntry extends React.Component {
     let form;
     let switchForm;
     if (this.state.type === 'login') {
-      form       = <Login />;
+      form       = <Login toggleEntry={this.toggleEntry}/>;
       switchForm = 'Create Account';
     } else {
-      form       = <Register/>;
+      form       = <Register toggleEntry={this.toggleEntry}/>;
       switchForm = 'Login';
     }
 
@@ -37,9 +39,9 @@ export default class UserEntry extends React.Component {
             {form}
           </div>
 
-          <div className={styles.actionToggle} onClick={this.toggleEntry}>
-            <p>{switchForm}</p>
-          </div>
+          {/*<div className={styles.actionToggle} onClick={this.toggleEntry}>*/}
+            {/*<p>{switchForm}</p>*/}
+          {/*</div>*/}
         </div>
       </div>
     )

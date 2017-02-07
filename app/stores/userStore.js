@@ -1,16 +1,21 @@
 import _ from 'lodash';
-import {observable, action, autorun} from 'mobx';
+import {observable, action, autorun, reaction} from 'mobx';
 import autoBind from 'react-autobind';
 import userService from '../services/userService';
 import utils from '../utils/helpers';
 
 export default class UserStore {
   @observable user;
+  @observable loading = false;
 
   constructor() {
     autoBind(this);
     this.user   = null;
     this.userId = null;
+    // this.loading = false;
+    reaction(() => this.loading, () => {
+      console.log('this.loading', this.loading);
+    });
   }
 
   @action

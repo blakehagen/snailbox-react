@@ -28,6 +28,9 @@ export default class Register extends React.Component {
         <input onChange={this.setConfirmPassword} value={this.state.confirmPassword} type="password"
                placeholder="Confirm Password"/>
         <ActionButton buttonAction="Register" onClick={this.registerGo}/>
+        <div className={styles.actionLabel} onClick={this.props.toggleEntry}>
+          <p>Login</p>
+        </div>
       </div>
     )
   }

@@ -35,22 +35,8 @@
     }
     .inputContainer {
       margin-top: 8px;
-      margin-bottom: 6px;
+      margin-bottom: -4px;
       width: 100%;
-    }
-    .actionToggle {
-      width: 100%;
-      height: 26px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      margin-bottom: 5px;
-      p {
-        color: #FFFFFF;
-        font-size: 12px;
-        font-weight: 100;
-        cursor: pointer;
-      }
     }
   }
 }

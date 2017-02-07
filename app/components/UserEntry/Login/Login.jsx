@@ -3,6 +3,7 @@ import React from 'react';
 import {observer, inject} from 'mobx-react';
 import autoBind from 'react-autobind';
 import ActionButton from '../ActionButton';
+import Spinner from '../../Common/Spinner';
 import utils from '../../../utils/helpers';
 import userService from '../../../services/userService';
 import styles from './login.scss';
@@ -15,7 +16,8 @@ export default class Login extends React.Component {
     autoBind(this);
     this.state     = {
       email: '',
-      password: ''
+      password: '',
+      loading: false
     };
     this.userStore = this.props.userStore;
     this.user      = this.props.userStore.user;
@@ -24,9 +26,16 @@ export default class Login extends React.Component {
   render() {
     return (
       <div>
-        <input onChange={this.setEmail} value={this.state.email} type="text" placeholder="Email"/>
-        <input onChange={this.setPassword} value={this.state.password} type="password" placeholder="Password"/>
-        <ActionButton buttonAction="Login" onClick={this.loginGo}/>
+        {this.state.loading ? <Spinner/> : (
+            <div>
+              <input onChange={this.setEmail} value={this.state.email} type="text" placeholder="Email"/>
+              <input onChange={this.setPassword} value={this.state.password} type="password" placeholder="Password"/>
+              <ActionButton buttonAction="Login" onClick={this.loginGo}/>
+              <div className={styles.actionLabel} onClick={this.props.toggleEntry}>
+                <p>Create Account</p>
+              </div>
+            </div>
+          )}
       </div>
     )
   }
@@ -40,6 +49,8 @@ export default class Login extends React.Component {
   }
 
   loginGo() {
+    this.setState({loading: true});
+
     let loginData = {
       email: this.state.email,
       password: this.state.password
@@ -54,9 +65,8 @@ export default class Login extends React.Component {
           return false;
         } else {
           this.userStore.user = response.user;
-          utils.changeRoute(`#/testRoute/${this.userStore.user._id}`)
+          utils.changeRoute(`#/testRoute/${this.userStore.user._id}`);
         }
       })
   }
-
 }

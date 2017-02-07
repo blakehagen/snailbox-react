@@ -8,10 +8,10 @@ import App from 'components/App';
 import TestRoute from 'components/TestRoute';
 import styles from './main.scss';
 
-const userStore = new UserStore();
+const userStore   = new UserStore();
 
 ReactDOM.render(
-<div className={styles.appBody}>
+  <div className={styles.appBody}>
     <Provider userStore={userStore}>
       <Router history={hashHistory}>
         <Route path='/' component={App}/>
