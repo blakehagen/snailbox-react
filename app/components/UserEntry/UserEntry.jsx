@@ -1,8 +1,6 @@
 import React from 'react';
-import {observer, inject} from 'mobx-react';
 import Login from './Login';
 import Register from './Register';
-import Spinner from '../Common/Spinner';
 import autoBind from 'react-autobind';
 import styles from './userEntry.scss';
 
@@ -18,13 +16,10 @@ export default class UserEntry extends React.Component {
   render() {
 
     let form;
-    let switchForm;
     if (this.state.type === 'login') {
-      form       = <Login toggleEntry={this.toggleEntry}/>;
-      switchForm = 'Create Account';
+      form = <Login toggleEntry={this.toggleEntry}/>;
     } else {
-      form       = <Register toggleEntry={this.toggleEntry}/>;
-      switchForm = 'Login';
+      form = <Register toggleEntry={this.toggleEntry}/>;
     }
 
     return (
@@ -34,7 +29,6 @@ export default class UserEntry extends React.Component {
             <div className={styles.snailIcon}/>
             <h1 className={styles.title}>SnailBox</h1>
           </div>
-
           <div className={styles.inputContainer}>
             {form}
           </div>
