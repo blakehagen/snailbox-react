@@ -16,6 +16,9 @@ export default class UserStore {
   @action
   getUser() {
     this.userId = sessionStorage.getItem('userId');
+    if (!this.userId) {
+      utils.changeRoute('/');
+    }
     userService.getUser(this.userId)
       .then(response => {
         if (_.isError(response) || response.status !== 200) {
