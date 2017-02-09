@@ -40,6 +40,20 @@ export default {
       });
   },
 
+  verifyUser(){
+    return axios.get(`${BASE_URL}verify`, {
+      headers: {
+        Authorization: `Bearer ${sessionStorage.getItem('token')}`
+      }
+    })
+      .then(response => {
+        return response.data;
+      })
+      .catch(err => {
+        return err;
+      })
+  },
+
   getUser(userId){
     return axios.get(`${BASE_URL}user/${userId}`, {
       headers: {

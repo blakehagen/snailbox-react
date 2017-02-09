@@ -14,6 +14,23 @@ export default class UserStore {
   }
 
   @action
+  verify() {
+    userService.verifyUser()
+      .then(response => {
+        console.log('verify user ---> ', response);
+        if (!response.success) {
+          utils.changeRoute('/');
+          sessionStorage.clear();
+        }
+      })
+      .catch(err => {
+        console.log('err', err);
+        utils.changeRoute('/');
+        sessionStorage.clear();
+      })
+  }
+
+  @action
   getUser() {
     this.userId = sessionStorage.getItem('userId');
     if (!this.userId) {
@@ -29,6 +46,7 @@ export default class UserStore {
       })
       .catch(err => {
         console.log('err -->', err);
+        utils.changeRoute('/');
       })
   }
 }
