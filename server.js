@@ -7,9 +7,6 @@ const express              = require('./server/config/express.js');
 let port                   = process.env.PORT || 8080;
 const app                  = express();
 
-// DB CONFIG//
-require('./server/config/db')();
-
 if (process.env !== 'production') {
   const compiler          = webpack(config);
   const webpackMiddleware = webpackDevMiddleware(compiler, {
@@ -43,3 +40,5 @@ app.get('/api/v1/test', (req, res) => {
 app.listen(port, () => {
   console.log('Listening on port', port);
 });
+
+console.log('NODE_ENV:', process.env.NODE_ENV);
