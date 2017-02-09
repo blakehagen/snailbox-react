@@ -31,8 +31,8 @@ export default class Login extends React.Component {
               <input onChange={this.setEmail} value={this.state.email} type="text" placeholder="Email"/>
               <input onChange={this.setPassword} value={this.state.password} type="password" placeholder="Password"/>
               <ActionButton buttonAction="Login" onClick={this.loginGo}/>
-              <div className={styles.actionLabel} onClick={this.props.toggleEntry}>
-                <p>Create Account</p>
+              <div className={styles.actionLabel}>
+                <p onClick={this.props.toggleEntry}>Create Account</p>
               </div>
             </div>
           )}
