@@ -2,7 +2,6 @@ import _ from 'lodash';
 import React from 'react';
 import {observer, inject} from 'mobx-react';
 import autoBind from 'react-autobind';
-import userService from '../../services/userService';
 import utils from '../../utils/helpers';
 
 @inject('userStore')
