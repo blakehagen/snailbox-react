@@ -1,5 +1,6 @@
 import _ from 'lodash';
 import React from 'react';
+import {reaction} from 'mobx';
 import {observer, inject} from 'mobx-react';
 import autoBind from 'react-autobind';
 import utils from '../../utils/helpers';
@@ -12,20 +13,26 @@ export default class TestRoute extends React.Component {
     autoBind(this);
     this.userStore = this.props.userStore;
     this.userStore.verify();
+    this.state = {
+      user: _.get(this.userStore, 'user', null)
+    }
+  }
+
+  componentDidMount() {
+    reaction(() => this.userStore.user, user => {
+      if (!_.isUndefined(user)) {
+        console.log('user in reaction ---> ', user);
+        this.setState({
+          user: user
+        });
+      }
+    }, true);
   }
 
   render() {
-    let user = _.get(this.userStore, 'user');
+    let user = this.state.user;
     if (!user) {
-      this.userStore.getUser();
       return null;
-    }
-
-    if (user) {
-      if (this.props.routeParams.userId !== user._id) {
-        utils.changeRoute('/');
-        return null;
-      }
     }
 
     return (

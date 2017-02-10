@@ -11,6 +11,25 @@ export default class UserStore {
     autoBind(this);
     this.user   = null;
     this.userId = null;
+
+    this.userId = sessionStorage.getItem('userId');
+    if (!this.userId) {
+      console.log('no user id here');
+    } else {
+      userService.getUser(this.userId)
+        .then(response => {
+          if (_.isError(response) || response.status !== 200) {
+            utils.changeRoute('/');
+          } else {
+            this.user   = response.data;
+            this.userId = response.data._id;
+          }
+        })
+        .catch(err => {
+          console.log('err -->', err);
+          utils.changeRoute('/');
+        })
+    }
   }
 
   @action
@@ -18,7 +37,7 @@ export default class UserStore {
     userService.verifyUser()
       .then(response => {
         console.log('verify user ---> ', response);
-        if (!response.success) {
+        if (_.isError(response) || !response.success) {
           utils.changeRoute('/');
           sessionStorage.clear();
         }
@@ -27,26 +46,6 @@ export default class UserStore {
         console.log('err', err);
         utils.changeRoute('/');
         sessionStorage.clear();
-      })
-  }
-
-  @action
-  getUser() {
-    this.userId = sessionStorage.getItem('userId');
-    if (!this.userId) {
-      utils.changeRoute('/');
-    }
-    userService.getUser(this.userId)
-      .then(response => {
-        if (_.isError(response) || response.status !== 200) {
-          utils.changeRoute('/');
-        } else {
-          this.user = response.data;
-        }
-      })
-      .catch(err => {
-        console.log('err -->', err);
-        utils.changeRoute('/');
       })
   }
 }
