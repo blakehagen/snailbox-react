@@ -35,6 +35,8 @@ export default class TestRoute extends React.Component {
       return null;
     }
 
+    this.verifyParams(user._id);
+
     return (
       <div>
         <p>THIS IS THE testRoute</p>
@@ -42,5 +44,16 @@ export default class TestRoute extends React.Component {
         <p>{user.address.city} {user.address.state}</p>
       </div>
     )
+  }
+
+  verifyParams(userId) {
+    console.log('this.props.params.userId --->', this.props.params.userId);
+    console.log('userId --->', userId);
+    if (this.props.params.userId !== userId) {
+      console.log('no params match!');
+      utils.changeRoute('/');
+      return false;
+    }
+    console.log('params check good');
   }
 }

@@ -14,13 +14,14 @@ export default class UserStore {
 
     this.userId = sessionStorage.getItem('userId');
     if (!this.userId) {
-      console.log('no user id here');
+      console.log('no user id');
     } else {
       userService.getUser(this.userId)
         .then(response => {
           if (_.isError(response) || response.status !== 200) {
             utils.changeRoute('/');
           } else {
+            console.log('successful user response!');
             this.user   = response.data;
             this.userId = response.data._id;
           }
